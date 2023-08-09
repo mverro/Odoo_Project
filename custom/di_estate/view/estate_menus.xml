@@ -1,0 +1,8 @@
+<odoo>
+    <menuitem id="estate_menu_root" name="Test Estate">
+        <menuitem id="estate_settings_menu" name="Settings" sequence="10" >
+            <menuitem id = 'estate_property_type_menu_action' action="estate_property_view_action" sequence="1"></menuitem>
+        </menuitem>
+
+    </menuitem>
+</odoo>

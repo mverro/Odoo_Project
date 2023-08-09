@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_dti_estate_property,access.dti.estate.property,dti_estate.model_dti_estate_property,base.group_user,1,1,1,1
+access_dti_estate_property_offer,access.dti.estate.property.offer,dti_estate.model_dti_estate_property_offer,base.group_user,1,1,1,1
+access_dti_estate_property_tag,access.dti.estate.property.tag,dti_estate.model_dti_estate_property_tag,base.group_user,1,1,1,1
+access_dti_estate_property_type,access.dti.estate.property.type,dti_estate.model_dti_estate_property_type,base.group_user,1,1,1,1
+access_dti_estate_property_wizard,access.dti.estate.property.wizard,dti_estate.model_dti_estate_property_wizard,base.group_user,1,1,1,1

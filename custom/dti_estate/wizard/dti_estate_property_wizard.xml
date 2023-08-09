@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_dti_estate_property_wizard" model="ir.ui.view">
+        <field name="name">dti.estate.property.wizard</field>
+        <field name="model">dti.estate.property.wizard</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <group string="Dates">
+                        <field name="start_date" required="1"/>
+                        <field name="end_date" required="1"/>
+                    </group>
+                    <group string="Optional">
+                        <field name="property_type_id" options="{'no_open':True, 'no_create':True}"/>
+                        <field name="buyer_id" options="{'no_open':True, 'no_create':True}"/>
+                    </group>
+                </group>
+                <footer>
+                    <button name="button_print_excel" string="Download Excel" type="object" class="oe_highlight"/>
+                    <button string="Cancel" class="oe_link" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_dti_estate_property_wizard">
+        <field name="name">Property Report</field>
+        <field name="res_model">dti.estate.property.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_dti_estate_property_wizard"/>
+        <field name="target">new</field>
+    </record>
+
+</odoo>

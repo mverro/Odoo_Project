@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="dti_estate_property_paperformat_id" model="report.paperformat">
+            <field name="name">Property Paperformat</field>
+            <field name="default" eval="True" />
+            <field name="format">A5</field>
+            <field name="page_height">0</field>
+            <field name="page_width">0</field>
+            <field name="orientation">Landscape</field>
+            <field name="margin_top">10</field>
+            <field name="margin_bottom">10</field>
+            <field name="margin_left">10</field>
+            <field name="margin_right">10</field>
+            <field name="header_spacing">5</field>
+            <field name="disable_shrinking" eval="True"/>
+            <field name="dpi">90</field>
+        </record>
+        
+        <record id="action_dti_estate_property_report" model="ir.actions.report">
+            <field name="name">Property</field>
+            <field name="model">dti.estate.property</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">dti_estate.dti_estate_property_report</field>
+            <field name="report_file">dti_estate.dti_estate_property_report</field>
+            <field name="paperformat_id" ref="dti_estate.dti_estate_property_paperformat_id"/>
+            <field name="print_report_name">'Property - %s' % (object.name)</field>
+            <field name="binding_model_id" ref="model_dti_estate_property"/>
+            <field name="binding_type">report</field>
+        </record>
+
+        <record id="action_dti_estate_property_html_report" model="ir.actions.report">
+            <field name="name">Property (Preview)</field>
+            <field name="model">dti.estate.property</field>
+            <field name="report_type">qweb-html</field>
+            <field name="report_name">dti_estate.dti_estate_property_report</field>
+            <field name="report_file">dti_estate.dti_estate_property_report</field>
+            <field name="print_report_name">'Property - %s' % (object.name)</field>
+            <field name="binding_model_id" ref="model_dti_estate_property"/>
+            <field name="binding_type">report</field>
+        </record>
+
+        <template id="dti_estate_property_report">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="doc">
+                    <div class="page" style="page-break-before:always;">
+                        <h2>Properties (<span t-field="doc.name"/>)</h2>
+                        <br/>
+                        <table width="100%" style="font-size: 15px">
+                            <tr>
+                                <td width="20%" style="padding: 5px">Property Type</td>
+                                <td width="2%" style="padding: 5px">:</td>
+                                <td width="28%" style="padding: 5px"><span t-field="doc.property_type_id.name"/></td>
+
+                                <td width="20%" style="padding: 5px">Expected Price</td>
+                                <td width="2%" style="padding: 5px">:</td>
+                                <td width="28%" style="padding: 5px"><span t-esc="'{0:,.2f}'.format(doc.expected_price)"/></td>
+                            </tr>
+                            <tr>
+                                <td width="20%" style="padding: 5px">Available From</td>
+                                <td width="2%" style="padding: 5px">:</td>
+                                <td width="28%" style="padding: 5px"><span t-field="doc.date_availability" t-field-options='{"format": "d MMMM y "}'/></td>
+                                
+                                <td width="20%" style="padding: 5px">Best Offer</td>
+                                <td width="2%" style="padding: 5px">:</td>
+                                <td width="28%" style="padding: 5px"><span t-esc="'{0:,.2f}'.format(doc.best_price)"/></td>
+                            </tr>
+                            <t t-if="doc.buyer_id">
+                                <tr>
+                                    <td width="20%" style="padding: 5px">Buyer</td>
+                                    <td width="2%" style="padding: 5px">:</td>
+                                    <td width="28%" style="padding: 5px"><span t-field="doc.buyer_id.name"/></td>
+                                    
+                                    <td width="20%" style="padding: 5px">Selling Price</td>
+                                    <td width="2%" style="padding: 5px">:</td>
+                                    <td width="28%" style="padding: 5px"><span t-esc="'{0:,.2f}'.format(doc.selling_price)"/></td>
+                                </tr>
+                            </t>
+                        </table>
+                        <br/>
+                        <table width="100%" class="table table-condensed" style="font-size: 15px;border-collapse:collapse">
+                            <thead style="color:white;">
+                                <tr>
+                                    <td style="text-align:center;background-color:#0073DF;vertical-align:middle;width:5%;"><strong><center>No</center></strong></td>
+                                    <td style="text-align:left;background-color:#0073DF;vertical-align:middle;width:20%;"><strong><center>Price</center></strong></td>
+                                    <td style="text-align:center;background-color:#0073DF;vertical-align:middle;width:35%;"><strong><center>Partner</center></strong></td>
+                                    <td style="text-align:center;background-color:#0073DF;vertical-align:middle;width:20%;"><strong><center>Validity (Days)</center></strong></td>
+                                    <td style="text-align:center;background-color:#0073DF;vertical-align:middle;width:20%;"><strong><center>Deadline</center></strong></td>
+                                </tr>
+                            </thead>
+                            <tr t-foreach="doc.offer_ids" t-as="offer">
+                                <td style="padding: 5px;text-align:center"><span t-esc="offer_index + 1"/></td>
+                                <td style="padding: 5px;text-align:right"><span t-esc="'{0:,.2f}'.format(offer.price)"/></td>
+                                <td style="padding: 5px;text-align:;left"><span t-esc="offer.partner_id.name"/></td>
+                                <td style="padding: 5px;text-align:right"><span t-esc="'{0:,.0f}'.format(offer.validity)"/></td>
+                                <td style="padding: 5px;text-align:center"><span t-field="offer.date_deadline" t-field-options='{"format": "d MMMM y "}'/></td>
+                            </tr>
+                        </table>
+                    </div>
+                </t>
+            </t>
+        </template>
+
+    </data>
+</odoo>
