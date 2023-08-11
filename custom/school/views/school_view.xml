@@ -4,9 +4,12 @@
         <field name="model">school.profile</field>
         <field name="arch" type="xml">
             <tree>
-                <field name="name" />
+                <field name="name" string="Nama Sekolah" />
                 <field name="email" />
                 <field name="phone" />
+                <field name="is_virtual_class" string="Kelas Virtual" />
+                <field name="school_rank" string="Ranking Kelas" />
+                <field name="address" string="Alamat Sekolah" />
             </tree>
         </field>
     </record>
@@ -19,12 +22,34 @@
             <form>
                 <group>
                     <group>
-                        <field name="name" />
-                        <field name="email" />
-                        <field name="phone" />
+                        <field name="school_image" widget="image"/>
+                    </group>
+                    <group>
+                        <field name="name" string="Nama Sekolah"
+                            placeholder="Isikan nama sekolah Anda" />
+                        <field name="email" placeholder="Isikan Email yang benar" />
+                        <field name="phone" placeholder="Isikan Nomor telefon dengan benar" />
+                        <field name="is_virtual_class" />
+                        <field name="school_rank" string="Ranking"
+                            placeholder="Isikan Ranking siswa" />
+                        <field name="result" string="Nilai" placeholder="Isikan Nilai Siswa" />
+                        <field name="address" string="Alamat"  placeholder="Masukkan Alamat Sekolah"/>
+                        <field name="auto_rank"/>
+                    </group>
+                    <group>
+                        <field name="establish_date" string="Tahun Berdiri"
+                            placeholder="Pilih Tahun Berdiri" />
+                        <field name="open_date" string="Hari Buka" placeholder="Pilih Hari Buka" />
+                        <field name="school_type" string="Tipe Sekolah"
+                            placeholder="Pilih Tipe Sekolah" />
+                        
                     </group>
                 </group>
-
+                <group>
+                    <field name="documents" string="Upload Dokumen" filename="documents_name" />
+                    <field name="documents_name" string="Nama Dokumen" />
+                    <field name="school_description" placeholder="Deskripsi Sekolah Jelas"/>
+                </group>
             </form>
         </field>
     </record>
