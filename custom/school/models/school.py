@@ -35,4 +35,14 @@ class SchoolProfile(models.Model):
                 rec.auto_rank = 100
             else :
                 rec.auto_rank = 0
+                
+    # @api.model
+    # def _name_search(self,name,args=None,operator ="ilike",limit=100,name_get_uid = None):
+    #     args = args or []
+    #     domain = []
+    #     if name :
+    #         domain = ['|','|',('name',operator,name),('email',operator, name),('school_type',operator,name)]
+    #     school_ids = self.search(domain+args,limit= limit)
+    #     return school_ids.name_get()
+    
         

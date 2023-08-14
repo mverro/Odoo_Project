@@ -20,11 +20,24 @@
       <field name="model">school_student.school_student</field>
       <field name="arch" type="xml">
         <form>
+          <button name="custom_button_method" string="Custom Button Click Me!" type="object"/>
+          <button name="wiz_open" string="Wizard Open" type="object"></button>
+          <button name="school_student.student_fees_update_action" string="open using action" type = "action"/>
           <group>
             <group>
               <field name="name" string="Nama Siswa" />
-              <field name="school_id" string="Sekolah" />
+              <field name="currency_id"/>
+              <field name="school_id" string="Sekolah" 
+              />
+              <!-- widget = "selection" -->
+              <!-- options ="{'no_create_edit':True, 'no_create':True,'no_open':True}" -->
               <field name ="hobby_list" widget="many2many_tags"/>
+              <field name="student_fees"/>
+              <field name="total_fees" widget="monetary"/>
+              <field name="ref_id" />
+              <field name="active" />
+              <field name="bdate" attrs = "{'invisible':[('total_fees','=',0)]}" />
+              <field name="student_age" />
             </group>
           </group>
         </form>
