@@ -1,42 +1,61 @@
 <odoo>
   <data>
     <!-- explicit list view definition -->
-
     <record model="ir.ui.view" id="school_student.list">
       <field name="name">school_student list</field>
       <field name="model">school_student.school_student</field>
       <field name="arch" type="xml">
         <tree>
+          <field name="id" />
           <field name="name" />
-          <field name="school_id" string="Sekolah" />  
-          <field name="is_virtual_school"/>
-          <field name="result_school"/>
+          <field name="roll_number" />
+          <field name="school_id" string="Sekolah" />
+          <field name="is_virtual_school" />
+          <field name="result_school" />
         </tree>
       </field>
     </record>
+
+    <!-- <record id="student_list_view_demo" model="ir.ui.view">
+      <field name="name">student.list.view.demo</field>
+      <field name="model">school_student.school_student</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="id"/>
+          <field name="create_date"/>
+          <field name="create_uid"/>
+          <field name="name"/>
+          <field name="roll_number"/>
+          <field name="school_id"/>
+        </tree>
+      </field>
+    </record> -->
 
     <record model="ir.ui.view" id="school_student.form">
       <field name="name">school_student form</field>
       <field name="model">school_student.school_student</field>
       <field name="arch" type="xml">
         <form>
-          <button name="custom_button_method" string="Custom Button Click Me!" type="object"/>
+          <button name="custom_button_method" string="Custom Button Click Me!" type="object" />
           <button name="wiz_open" string="Wizard Open" type="object"></button>
-          <button name="school_student.student_fees_update_action" string="open using action" type = "action"/>
+          <button name="school_student.student_fees_update_action" string="open using action"
+            type="action" />
           <group>
             <group>
+              <field name="id" />
               <field name="name" string="Nama Siswa" />
-              <field name="currency_id"/>
-              <field name="school_id" string="Sekolah" 
+              <field name="roll_number" />
+              <field name="currency_id" />
+              <field name="school_id" string="Sekolah"
               />
               <!-- widget = "selection" -->
               <!-- options ="{'no_create_edit':True, 'no_create':True,'no_open':True}" -->
-              <field name ="hobby_list" widget="many2many_tags"/>
-              <field name="student_fees"/>
-              <field name="total_fees" widget="monetary"/>
+              <field name="hobby_list" widget="many2many_tags" />
+              <field name="student_fees" />
+              <field name="total_fees" widget="monetary" />
               <field name="ref_id" />
               <field name="active" />
-              <field name="bdate" attrs = "{'invisible':[('total_fees','=',0)]}" />
+              <field name="bdate" attrs="{'invisible':[('total_fees','=',0)]}" />
               <field name="student_age" />
             </group>
           </group>
@@ -136,7 +155,7 @@
       action="school_student.action_window" />
     <menuitem name="Server to list" id="school_student" parent="school_student.menu_2"
       action="school_student.action_server" />
-      
+
     <menuitem name="Hobby" id="hobby_student" parent="school_student.menu_2"
       action="school_student.hobby_action_window" />
 

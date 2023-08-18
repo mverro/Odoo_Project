@@ -1,0 +1,9 @@
+<odoo>
+    <record id="school_2" model="school.profile">
+    <field name="name">School XML</field>
+    <field name="email">school.xmp@test.com</field>
+    <field name="phone">+01923883</field>
+    <field name="address">Jl.kematian haha</field>
+    <field name="school_type">public</field>
+    </record>
+</odoo>

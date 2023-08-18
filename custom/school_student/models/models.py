@@ -13,6 +13,7 @@ class school_student(models.Model):
     hobby_list = fields.Many2many("hobby", "school_student_hobby_rel", "school_student_id","hobby_id", string="Hobbies")
     is_virtual_school = fields.Boolean(related = "school_id.is_virtual_class" ,string = "Vitual")
     result_school = fields.Float(related='school_id.result',string="Result")
+    roll_number = fields.Char("Roll Number") 
     
     currency_id = fields.Many2one("res.currency", string="Currency")
     student_fees = fields.Monetary(string ="Student Fees")
@@ -23,6 +24,12 @@ class school_student(models.Model):
     bdate = fields.Date(string="Date of Birth", required = False)
     student_age = fields.Char(string = "Total Ages", compute="_get_age_from_student")
     
+    
+    @api.model
+    def _change_roll_number(self):
+        # This method is userd to add roll number to the student profile
+        for stud in self.search([('roll_number','=',False)]):
+            stud.roll_number = "STD" + str(stud.id)
     
     def wiz_open(self):
         

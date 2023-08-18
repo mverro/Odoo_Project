@@ -12,12 +12,9 @@
     'website': "https://www.yourcompany.com",
     'category': 'School',
     'version': '0.1',
-    'depends': ['school'],
+    'depends': ['school','school_student','report_xlsx'],
     'data': [
         'report/school_report_template.xml',
-        # 'security/ir.model.access.csv',
-        # 'views/views.xml',
-        # 'views/templates.xml',
     ],
     "application": True,
     "license": "LGPL-3",

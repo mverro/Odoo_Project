@@ -1,0 +1,3 @@
+<odoo>
+    <function model="school_student.school_student" name="_change_roll_number"></function>
+</odoo>

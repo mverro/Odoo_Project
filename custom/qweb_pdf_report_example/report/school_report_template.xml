@@ -1,27 +1,83 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
-    <template id="school_profile_report_report_template">
+    <record id="school_student_profile_report_paperformat_id" model="report.paperformat">
+        <field name="name">Property Paperformat</field>
+        <field name="default" eval="True" />
+        <field name="format">A4</field>
+        <field name="page_height">0</field>
+        <field name="page_width">0</field>
+        <field name="orientation">Landscape</field>
+        <field name="margin_top">10</field>
+        <field name="margin_bottom">10</field>
+        <field name="margin_left">10</field>
+        <field name="margin_right">10</field>
+        <field name="header_spacing">5</field>
+        <field name="disable_shrinking" eval="True"/>
+        <field name="dpi">90</field>
+    </record>
+    
+   
+   
+    <template id="school_student_profile_report_report_template">
         <t t-call="web.html_container">
             <t t-foreach="docs" t-as="doc">
-                <t t-call="external_layout">
+                <t t-call="web.external_layout">
                     <div class="page">
                         <h1>Hello How Are you ?</h1>
+                        <!-- <h1 t-esc="doc.name"/>
+                        <h1 t-esc="doc.name"/>
+                        <span t-field="doc.name"/> -->
+
+                        <!-- <t t-if="doc.name == 'azzam'">
+                            <p>Yes This is <span t-esc="doc.name"></span></p>
+                        </t>
+                        <t t-elif="doc.name == 'adnan'">
+                            <p>Ini adalah <span t-field="doc.name"></span></p>
+                        </t>
+                        <t t-else="">
+                            <p>No this is not azzam</p>
+                            <p>This is <span t-field="doc.name"></span></p>
+                        </t>
+
+                        <t t-foreach="doc.school_id.school_list" t-as="rct">
+                            <h1 t-esc="rct.name"></h1>
+                        </t> -->
+
+                        <t t-set='a' t-value='1234'/>
+                        <t t-esc='a'/>
+
+                        
+
                     </div>
                 </t>
             </t>
         </t>
     </template>
 
-    <record id="school_profile_report_report_temp" model="ir.actions.report">
+    <record id="school_student_profile_report_report_temp" model="ir.actions.report">
         <field name="name">Student Card</field>
-        <field name="model">school.profile</field>
+        <field name="model">school_student.school_student</field>
         <field name="report_type">qweb-pdf</field>
-        <field name="report_name">qweb_pdf_report_example.school_profile_report_report_template</field>
-        <field name="report_file">qweb_pdf_report_example.school_profile_report_report_template</field>
+        <field name="report_name">qweb_pdf_report_example.school_student_profile_report_report_template</field>
+        <field name="report_file">qweb_pdf_report_example.school_student_profile_report_report_template</field>
+        <field name="paperformat_id" ref="school_student_profile_report_paperformat_id"></field>
         <field name="print_report_name">'Student-Card'</field>
-        <field name="binding_model_id" ref="school_profile.model_school_profile"></field>
+        <field name="binding_model_id" ref="school_student.model_school_student_school_student"></field>
         <field name="binding_type">report</field>
     </record>
+
+    <record id="school_student_profile_report_report_xls" model="ir.actions.report">
+        <field name="name">Student Card Excel</field>
+        <field name="model">school_student.school_student</field>
+        <field name="report_type">xlsx</field>
+        <field name="report_name">qweb_pdf_report_example.school_student_template_xls</field>
+        <field name="report_file">qweb_pdf_report_example.school_student_template_xls</field>
+        <field name="print_report_name">'Student-Card'</field>
+        <field name="binding_model_id" ref="school_student.model_school_student_school_student"></field>
+        <field name="binding_type">report</field>
+    </record>
+
+
 
 </odoo>

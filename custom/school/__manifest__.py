@@ -10,6 +10,7 @@
     "depends"       : [
         "base"],
     "data" : [
+        "data/school_data.xml",
         "security/ir.model.access.csv",
         "views/school_view.xml"
     ]

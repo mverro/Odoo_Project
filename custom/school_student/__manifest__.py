@@ -20,10 +20,14 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['base','school'],
+    'depends': ['base', 'school', 'report_xlsx'],
 
     # always loaded
     'data': [
+        'data/student_data.xml',
+        'data/school.profile.csv',
+        'data/school_student.school_student.csv',
+        'data/hobby.csv',
         'security/ir.model.access.csv',
         'views/views.xml',
         'views/templates.xml',
@@ -35,4 +39,6 @@
     ],
     "application": True,
     "license": "LGPL-3",
+    
+
 }
